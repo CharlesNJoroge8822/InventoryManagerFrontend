@@ -38,7 +38,7 @@ const ProductManagement = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/");
+        const response = await fetch("https://inventorymanager-uigs.onrender.com/api/products/");
         const json = await response.json();
         setProducts(json.data);
         setLoading(false);
@@ -112,7 +112,7 @@ const ProductManagement = () => {
   // Handle product creation
   const handleCreateProduct = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/products/', {
+      const response = await fetch('https://inventorymanager-uigs.onrender.com/api/products/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newProduct)
@@ -142,7 +142,7 @@ const ProductManagement = () => {
   // Handle product update
   const handleUpdateProduct = async (productId, updatedFields) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/products/${productId}`, {
+      const response = await fetch(`https://inventorymanager-uigs.onrender.com/api/products/${productId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedFields)
@@ -164,7 +164,7 @@ const ProductManagement = () => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/products/${productId}`, {
+      const response = await fetch(`https://inventorymanager-uigs.onrender.com/api/products/${productId}`, {
         method: 'DELETE'
       });
       
