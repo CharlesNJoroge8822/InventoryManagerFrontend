@@ -54,7 +54,7 @@ const ProductManagement = () => {
   
   // Filter and search products
   useEffect(() => {
-    let result = [...products];
+    let result = Array.isArray(products) ? [...products] : [];
   
     // Apply search
     if (searchTerm) {
@@ -176,11 +176,9 @@ const ProductManagement = () => {
     }
   };
 
-  // Get unique categories for filter
-  const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
-  // Get unique suppliers for filter
-  const suppliers = [...new Set(products.map(p => p.supplier_name).filter(Boolean))];
-
+  const categories = [...new Set((products || []).map(p => p.category).filter(Boolean))];
+  const suppliers = [...new Set((products || []).map(p => p.supplier_name).filter(Boolean))];
+  
   // Get stock status for a product
   const getStockStatus = (product) => {
     if (product.quantity === 0) return 'out';
